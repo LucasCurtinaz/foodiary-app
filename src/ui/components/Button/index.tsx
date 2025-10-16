@@ -5,7 +5,8 @@ import { AppText } from '../AppText';
 
 import { buttonStyles, ButtonVariants, styles } from './styles';
 
-interface IButtonProps extends React.ComponentProps<typeof Pressable>, Omit<ButtonVariants, 'disabled'> {};
+interface IButtonProps extends React.ComponentProps<typeof Pressable>,
+  Omit<ButtonVariants, 'disabled'> {};
 
 export function Button({
   children,

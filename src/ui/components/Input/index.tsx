@@ -1,6 +1,7 @@
-import { theme } from '@ui/styles/theme';
 import { useState } from 'react';
 import { NativeSyntheticEvent, TextInput, TextInputFocusEventData, TextInputProps } from 'react-native';
+
+import { theme } from '@ui/styles/theme';
 
 import { inputStyles } from './styles';
 
@@ -11,6 +12,7 @@ export interface IInputProps extends BaseTextInputProps {
   disabled?: boolean;
   InputComponent?: React.ComponentType<TextInputProps>;
   ref?: React.Ref<TextInput>;
+  formatter?: (value: string) => string;
 }
 
 export function Input({
@@ -20,6 +22,8 @@ export function Input({
   error,
   disabled,
   InputComponent = TextInput,
+  onChangeText,
+  formatter,
   ...props
 }: IInputProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -32,6 +36,12 @@ export function Input({
   function handleBlur(event: NativeSyntheticEvent<TextInputFocusEventData>) {
     setIsFocused(false);
     onBlur?.(event);
+  }
+
+  function handleChangeText(value: string) {
+    const formattedValue = formatter?.(value) ?? value;
+
+    onChangeText?.(formattedValue);
   }
 
   return (
@@ -47,6 +57,7 @@ export function Input({
       onFocus={handleFocus}
       onBlur={handleBlur}
       readOnly={disabled}
+      onChangeText={handleChangeText}
       {...props}
     />
   );

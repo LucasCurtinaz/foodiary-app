@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 export function Home() {
   const { signOut } = useAuth();
-  const { account } = useAccount();
+  const { account, loadAccount } = useAccount();
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -14,6 +14,9 @@ export function Home() {
 
       <Button onPress={signOut}>
         Sair
+      </Button>
+      <Button onPress={() => loadAccount()}>
+        Recarregar account
       </Button>
     </View>
   );

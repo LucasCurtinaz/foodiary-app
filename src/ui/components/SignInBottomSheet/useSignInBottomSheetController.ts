@@ -34,7 +34,7 @@ export function useSignInBottomSheetController(ref: React.Ref<ISignInBottomSheet
       setIsLoading(true);
       await signIn(data);
     } catch {
-      setIsLoading(true);
+      setIsLoading(false);
       Alert.alert('Oops!', 'As credenciais informadas são inválidas');
     }
   });

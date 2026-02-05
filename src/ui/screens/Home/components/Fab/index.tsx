@@ -40,7 +40,9 @@ export function Fab() {
               Cadastre a sua refeição
             </AppText>
 
-            <CreateMealOptions />
+            <CreateMealOptions
+              onCreate={() => bottomSheetModalRef.current?.dismiss()}
+            />
           </BottomSheetView>
         </BottomSheetModal>
       </BottomSheetModalProvider>
